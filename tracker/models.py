@@ -10,6 +10,10 @@ class Location(models.Model):
     longitude = models.FloatField()
     altitude = models.FloatField()
 
+    def __str__(self):
+        # Return a string representation of the object.
+        return self.name
+
 
 class Satellite(models.Model):
     '''Represents an individual satellite.'''
@@ -17,6 +21,9 @@ class Satellite(models.Model):
     norad_id = models.IntegerField()
     satellite_type = models.CharField(max_length=100)
     description = models.TextField()
+
+    def __str__(self):
+        return self.name
 
 
 class Pass(models.Model):
@@ -27,3 +34,11 @@ class Pass(models.Model):
     duration_seconds = models.IntegerField()
     max_elevation = models.FloatField()
     notes = models.TextField(blank=True, null=True)
+
+    # Django automatically generates plural names for models by appending an 's'; 'Pass' became
+    # 'Passs' instead of 'Passes'. The line below corrects this issue.
+    class Meta:
+        verbose_name_plural = 'Passes'
+
+    def __str__(self):
+        return f'{self.satellite.name} over {self.location.name} on {self.datetime}'
