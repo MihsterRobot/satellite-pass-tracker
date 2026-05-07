@@ -20,6 +20,10 @@ class LocationSerializer(serializers.ModelSerializer):
         if value < -180 or value > 180:
             raise serializers.ValidationError('The longitude must be between -180 and 180.')
         return value
+    
+    def validate_altitude(self, value):
+        if value < -430 or value > 8849:
+            raise serializers.ValidationError('The altitude must be between -430 and 8,849 meters.')
 
 
 class SatelliteSerializer(serializers.ModelSerializer):
