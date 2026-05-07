@@ -8,7 +8,7 @@ class Location(models.Model):
     name = models.CharField(max_length=100)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    altitude = models.FloatField()
+    altitude_m = models.FloatField(verbose_name='Altitude (m)')
 
     def __str__(self):
         # Return a string representation of the object.
@@ -32,7 +32,7 @@ class Pass(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     datetime = models.DateTimeField()
     duration_seconds = models.IntegerField()
-    max_elevation = models.FloatField()
+    max_elevation_deg = models.FloatField(verbose_name='Max elevation (°)')
     notes = models.TextField(blank=True, null=True)
 
     # Django automatically generates plural names for models by appending an 's'; 'Pass' became
