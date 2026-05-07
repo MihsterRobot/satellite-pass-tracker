@@ -10,6 +10,16 @@ class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
         fields = '__all__'
+    
+    def validate_latitude(self, value):
+        if value < -90 or value > 90:
+            raise serializers.ValidationError('The latitude must be between -90 and 90.')
+        return value
+    
+    def validate_longitude(self, value):
+        if value < -180 or value > 180:
+            raise serializers.ValidationError('The longitude must be between -180 and 180.')
+        return value
 
 
 class SatelliteSerializer(serializers.ModelSerializer):
@@ -17,8 +27,18 @@ class SatelliteSerializer(serializers.ModelSerializer):
         model = Satellite
         fields = '__all__'
 
+    def validate_norad_id(self, value):
+        if Satellite.objects.filter(norad_id=value).exists():
+            raise serializers.ValidationError('A satellite with this NORAD ID already exists.')
+        return value
+
 
 class PassSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pass
         fields = '__all__'
+
+    def validate_max_elevation(self, value):
+        if value < 0 or value > 90:
+            raise serializers.ValidationError('The max elevation must be a number between 0 and 90.')
+        return value
