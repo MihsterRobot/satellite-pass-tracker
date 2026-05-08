@@ -40,9 +40,16 @@ class SatelliteSerializer(serializers.ModelSerializer):
 class PassSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pass
-        fields = '__all__'
+        fields = ['id', 'satellite', 'location', 'datetime', 'duration_seconds', 'max_elevation_deg', 'notes']
 
     def validate_max_elevation(self, value):
         if value < 0 or value > 90:
             raise serializers.ValidationError('The max elevation must be a number between 0 and 90.')
         return value
+    
+    # Override default output to nest full satellite and location objects instead of just their IDs.
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['satellite'] = SatelliteSerializer(instance.satellite).data
+        representation['location'] = LocationSerializer(instance.location).data
+        return representation
