@@ -1,3 +1,5 @@
+'''Defines custom filter sets for querying model data via URL parameters.'''
+
 import django_filters
 
 from .models import Pass
