@@ -3,6 +3,7 @@
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 
+from .filters import PassFilter
 from .models import Location, Satellite, Pass
 from .serializers import LocationSerializer, SatelliteSerializer, PassSerializer
 
@@ -26,4 +27,4 @@ class PassViewSet(viewsets.ModelViewSet):
     queryset = Pass.objects.all()
     serializer_class = PassSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['satellite', 'location']
+    filterset_class = PassFilter
