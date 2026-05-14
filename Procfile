@@ -1,1 +1,1 @@
-web: gunicorn satellite_tracker.wsgi
+web: gunicorn satellite_tracker.wsgi --bind 0.0.0.0:${PORT:-8000}
