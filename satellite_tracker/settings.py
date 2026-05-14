@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'satellite_tracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'satellite_tracker'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+        'NAME': os.getenv('PGDATABASE', 'satellite_tracker'),
+        'USER': os.getenv('PGUSER', 'postgres'),
+        'PASSWORD': os.getenv('PGPASSWORD', os.getenv('DB_PASSWORD')),
+        'HOST': os.getenv('PGHOST', os.getenv('DB_HOST', 'localhost')),
+        'PORT': os.getenv('PGPORT', os.getenv('DB_PORT', '5432')),
     }
 }
 
