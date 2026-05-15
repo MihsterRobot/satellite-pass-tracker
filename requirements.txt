@@ -2,11 +2,15 @@ asgiref==3.11.1
 Django==6.0.4
 django-filter==25.2
 djangorestframework==3.17.1
+dnspython==2.8.0
 git-filter-repo==2.47.0
 gunicorn==26.0.0
 packaging==26.2
 psycopg2-binary==2.9.12
+pymongo==4.17.0
 python-dotenv==1.2.2
+ruff==0.15.13
+shelve_cache==0.0.4
 sqlparse==0.5.5
 tzdata==2026.1
 whitenoise==6.12.0
