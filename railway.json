@@ -4,6 +4,6 @@
     "dockerfilePath": "./Dockerfile"
   },
   "deploy": {
-    "startCommand": "python manage.py migrate && python manage.py shell -c \"from django.contrib.auth.models import User; User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', 'admin@example.com', '$DJANGO_SUPERUSER_PASSWORD')\" && gunicorn satellite_tracker.wsgi --bind 0.0.0.0:8000"
+    "startCommand": "python manage.py migrate && gunicorn satellite_tracker.wsgi --bind 0.0.0.0:8000"
   }
 }
