@@ -21,9 +21,10 @@ class LocationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('The longitude must be between -180 and 180.')
         return value
     
-    def validate_altitude(self, value):
+    def validate_altitude_m(self, value):
         if value < -430 or value > 8849:
             raise serializers.ValidationError('The altitude must be between -430 and 8,849 meters.')
+        return value
 
 
 class SatelliteSerializer(serializers.ModelSerializer):
@@ -42,7 +43,7 @@ class PassSerializer(serializers.ModelSerializer):
         model = Pass
         fields = ['id', 'satellite', 'location', 'datetime', 'duration_seconds', 'max_elevation_deg', 'notes']
 
-    def validate_max_elevation(self, value):
+    def validate_max_elevation_deg(self, value):
         if value < 0 or value > 90:
             raise serializers.ValidationError('The max elevation must be a number between 0 and 90.')
         return value
