@@ -83,16 +83,16 @@ class LocationSerializerTest(TestCase):
 class SatelliteSerializerTest(TestCase):
     def test_duplicate_norad_id_is_rejected(self):
         data1 = {
-            'name': 'PACE',
+            'name': 'Test Satellite_1',
             'norad_id': 12345,
-            'satellite_type': 'Observation',
-            'description': 'Engineered to explore the Universe.'
+            'satellite_type': 'Test type_1',
+            'description': 'Test description_1.'
         }
         data2 = {
-            'name': 'JWST',
+            'name': 'Test Satellite_2',
             'norad_id': 12345,
-            'satellite_type': 'Observation',
-            'description': 'Engineered to explore Mars.'
+            'satellite_type': 'Test type_2',
+            'description': 'Test description_2.'
         }
         serializer1 = SatelliteSerializer(data=data1)
         self.assertTrue(serializer1.is_valid())
@@ -104,10 +104,10 @@ class SatelliteSerializerTest(TestCase):
 class PassSerializerTest(TestCase):
     def setUp(self):
         self.satellite = Satellite.objects.create(
-            name='PACE',
+            name='Test Satellite',
             norad_id=12345,
-            satellite_type='Observation',
-            description='Engineered to explore the Universe.'
+            satellite_type='Test type',
+            description='Test description'
         )
         self.location = Location.objects.create(
             name='South Pole',
@@ -115,7 +115,7 @@ class PassSerializerTest(TestCase):
             longitude=0.0,
             altitude_m=0.0
         )
-        self.dt = datetime.datetime(1990, 8, 1, 5, 8, 0, tzinfo=datetime.timezone.utc)
+        self.dt = datetime.datetime(2000, 1, 1, 0, 0, 0, tzinfo=datetime.timezone.utc)
 
     def test_max_elevation_value_outside_0_is_rejected(self):
         data = {
