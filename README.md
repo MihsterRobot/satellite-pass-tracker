@@ -35,13 +35,15 @@ Satellite Tracker is a RESTful API built with Django and Django REST Framework t
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/api/auth/` | Obtain authentication token |
-| GET, POST | `/api/satellites/` | List all satellites / Create a satellite |
+| GET, POST | `/api/satellites/` | List satellites / Create a satellite |
 | GET, PUT, PATCH, DELETE | `/api/satellites/<id>/` | Retrieve / Update / Delete a satellite |
-| GET, POST | `/api/locations/` | List all locations / Create a location |
+| GET, POST | `/api/locations/` | List locations / Create a location |
 | GET, PUT, PATCH, DELETE | `/api/locations/<id>/` | Retrieve / Update / Delete a location |
-| GET, POST | `/api/passes/` | List all passes / Create a pass |
+| GET, POST | `/api/passes/` | List passes / Create a pass |
 | GET, PUT, PATCH, DELETE | `/api/passes/<id>/` | Retrieve / Update / Delete a pass |
 | POST | `/api/passes/predict/` | Fetch and store predicted passes from N2YO |
+
+List endpoints return paginated results with a default page size of 10. Use `?page=2` to access subsequent pages.
 
 ### Filtering Examples
 
