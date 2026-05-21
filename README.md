@@ -24,6 +24,7 @@ Satellite Tracker is a RESTful API built with Django and Django REST Framework t
 - Token-based authentication — endpoints are protected and require a valid token
 - Field-level validation — coordinates, NORAD ID uniqueness, elevation angle constraints
 - Filtering by satellite, location, and date range
+- N2YO API integration — automatically fetches and stores predicted pass events for a given satellite and location
 - Nested serializers — pass responses include full satellite and location details
 - Django admin interface for managing data
 
@@ -40,6 +41,7 @@ Satellite Tracker is a RESTful API built with Django and Django REST Framework t
 | GET, PUT, PATCH, DELETE | `/api/locations/<id>/` | Retrieve / Update / Delete a location |
 | GET, POST | `/api/passes/` | List all passes / Create a pass |
 | GET, PUT, PATCH, DELETE | `/api/passes/<id>/` | Retrieve / Update / Delete a pass |
+| POST | `/api/passes/predict/` | Fetch and store predicted passes from N2YO |
 
 ### Filtering Examples
 
