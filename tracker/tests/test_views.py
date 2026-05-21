@@ -50,9 +50,9 @@ class SatelliteViewTest(APITestCase):
         )
         response = self.client.get('/api/satellites/?satellite_type=Observation')
         self.assertEqual(response.status_code, 200) 
-        self.assertEqual(len(response.data), 1)  # type: ignore
-        self.assertEqual(response.data[0]['satellite_type'], 'Observation')  # type: ignore
-    
+        self.assertEqual(len(response.data['results']), 1)  # type: ignore
+        self.assertEqual(response.data['results'][0]['satellite_type'], 'Observation')  # type: ignore
+
 
 class PassViewTest(APITestCase):
     def setUp(self):
@@ -92,5 +92,5 @@ class PassViewTest(APITestCase):
     def test_date_filter_returns_correct_pass_event(self):
         response = self.client.get('/api/passes/?start_date=2024-01-01&end_date=2024-12-31')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data), 1)  # type: ignore
-        self.assertEqual(response.data[0]['datetime'], '2024-01-01T00:00:00Z')  # type: ignore
+        self.assertEqual(len(response.data['results']), 1)  # type: ignore
+        self.assertEqual(response.data['results'][0]['datetime'], '2024-01-01T00:00:00Z')  # type: ignore

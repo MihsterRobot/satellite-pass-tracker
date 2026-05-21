@@ -22,6 +22,9 @@ class Satellite(models.Model):
     satellite_type = models.CharField(max_length=100)
     description = models.TextField()
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
 
@@ -35,10 +38,11 @@ class Pass(models.Model):
     max_elevation_deg = models.FloatField(verbose_name='Max elevation (°)')
     notes = models.TextField(blank=True, null=True)
 
-    # Django automatically generates plural names for models by appending an 's'; 'Pass' became
-    # 'Passs' instead of 'Passes'. The line below corrects this issue.
+    # Django automatically generates plural names by appending an 's'; 'Pass' became
+    # 'Passs' instead of 'Passes'. 'ordering' ensures consistent pagination results.
     class Meta:
         verbose_name_plural = 'Passes'
+        ordering = ['datetime']
 
     def __str__(self):
         return f'{self.satellite.name} over {self.location.name} on {self.datetime}'
