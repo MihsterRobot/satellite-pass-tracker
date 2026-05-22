@@ -2,7 +2,7 @@
 
 Satellite Tracker is a RESTful API built with Django and Django REST Framework that allows users to log and query satellite pass events over ground-based observation locations. It supports full CRUD operations, field-level validation, filtering, and token-based authentication, and is deployed on Railway with a PostgreSQL backend.
 
-**Live API:** https://web-production-753cb.up.railway.app/api/
+**Live API:** https://web-production-753cb.up.railway.app/api/v1/
 
 ---
 
@@ -34,29 +34,29 @@ Satellite Tracker is a RESTful API built with Django and Django REST Framework t
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/auth/` | Obtain authentication token |
-| GET, POST | `/api/satellites/` | List satellites / Create a satellite |
-| GET, PUT, PATCH, DELETE | `/api/satellites/<id>/` | Retrieve / Update / Delete a satellite |
-| GET, POST | `/api/locations/` | List locations / Create a location |
-| GET, PUT, PATCH, DELETE | `/api/locations/<id>/` | Retrieve / Update / Delete a location |
-| GET, POST | `/api/passes/` | List passes / Create a pass |
-| GET, PUT, PATCH, DELETE | `/api/passes/<id>/` | Retrieve / Update / Delete a pass |
-| POST | `/api/passes/predict/` | Fetch and store predicted passes from N2YO |
+| POST | `/api/v1/auth/` | Obtain authentication token |
+| GET, POST | `/api/v1/satellites/` | List satellites / Create a satellite |
+| GET, PUT, PATCH, DELETE | `/api/v1/satellites/<id>/` | Retrieve / Update / Delete a satellite |
+| GET, POST | `/api/v1/locations/` | List locations / Create a location |
+| GET, PUT, PATCH, DELETE | `/api/v1/locations/<id>/` | Retrieve / Update / Delete a location |
+| GET, POST | `/api/v1/passes/` | List passes / Create a pass |
+| GET, PUT, PATCH, DELETE | `/api/v1/passes/<id>/` | Retrieve / Update / Delete a pass |
+| POST | `/api/v1/passes/predict/` | Fetch and store predicted passes from N2YO |
 
 List endpoints return paginated results with a default page size of 10. Use `?page=2` to access subsequent pages.
 
 ### Filtering Examples
 
-- `GET /api/passes/?satellite=1` — filter passes by satellite
-- `GET /api/passes/?start_date=2024-01-01&end_date=2024-12-31` — filter passes by date range
-- `GET /api/satellites/?satellite_type=weather` — filter satellites by type
+- `GET /api/v1/passes/?satellite=1` — filter passes by satellite
+- `GET /api/v1/passes/?start_date=2024-01-01&end_date=2024-12-31` — filter passes by date range
+- `GET /api/v1/satellites/?satellite_type=weather` — filter satellites by type
 
 ### Authentication
 
-All endpoints except `/api/auth/` require a valid token. To authenticate, first obtain a token:
+All endpoints except `/api/v1/auth/` require a valid token. To authenticate, first obtain a token:
 
 ```
-POST /api/auth/
+POST /api/v1/auth/
 Content-Type: application/json
 
 {
@@ -133,7 +133,7 @@ py manage.py createsuperuser
 py manage.py runserver
 ```
 
-The API will be available at `http://127.0.0.1:8000/api/`.
+The API will be available at `http://127.0.0.1:8000/api/v1/`.
 
 ### Docker Setup
 
@@ -157,4 +157,4 @@ docker-compose exec web python manage.py migrate
 docker-compose exec web python manage.py createsuperuser
 ```
 
-The API will be available at `http://127.0.0.1:8000/api/`.
+The API will be available at `http://127.0.0.1:8000/api/v1/`.

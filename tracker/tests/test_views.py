@@ -18,11 +18,11 @@ class SatelliteViewTest(APITestCase):
     
     def test_unauthenticated_request_returns_401_response(self):
         unauthenticated_client = APIClient()
-        response = unauthenticated_client.get('/api/satellites/')
+        response = unauthenticated_client.get('/api/v1/satellites/')
         self.assertEqual(response.status_code, 401)  # type: ignore
 
     def test_authenticated_request_returns_200_response(self):
-        response = self.client.get('/api/satellites/')
+        response = self.client.get('/api/v1/satellites/')
         self.assertEqual(response.status_code, 200)
 
     def test_create_satellite_returns_201_response(self):
@@ -32,7 +32,7 @@ class SatelliteViewTest(APITestCase):
             'satellite_type': 'Observation',
             'description': 'James Webb Space Telescope.'
         }
-        response = self.client.post('/api/satellites/', data, format='json')
+        response = self.client.post('/api/v1/satellites/', data, format='json')
         self.assertEqual(response.status_code, 201)
 
     def test_satellite_filter_returns_correct_type(self):
@@ -48,7 +48,7 @@ class SatelliteViewTest(APITestCase):
             satellite_type='Espionage',
             description='Top-secret.'
         )
-        response = self.client.get('/api/satellites/?satellite_type=Observation')
+        response = self.client.get('/api/v1/satellites/?satellite_type=Observation')
         self.assertEqual(response.status_code, 200) 
         self.assertEqual(len(response.data['results']), 1)  # type: ignore
         self.assertEqual(response.data['results'][0]['satellite_type'], 'Observation')  # type: ignore
@@ -90,7 +90,7 @@ class PassViewTest(APITestCase):
         )
 
     def test_date_filter_returns_correct_pass_event(self):
-        response = self.client.get('/api/passes/?start_date=2024-01-01&end_date=2024-12-31')
+        response = self.client.get('/api/v1/passes/?start_date=2024-01-01&end_date=2024-12-31')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.data['results']), 1)  # type: ignore
         self.assertEqual(response.data['results'][0]['datetime'], '2024-01-01T00:00:00Z')  # type: ignore

@@ -31,7 +31,7 @@ def health_check(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('tracker.urls')),
-    path('api/auth/', obtain_auth_token),
+    path('api/v1/', include('tracker.urls')),
+    path('api/v1/auth/', obtain_auth_token),
     path('health/', health_check),
 ]
