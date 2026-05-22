@@ -3,11 +3,16 @@
 import os
 import requests
 import datetime
+import logging
 
 from tracker.models import Pass
 
 
+logger = logging.getLogger(__name__)
+
+
 def fetch_predicted_passes(satellite, location, days=5, min_elevation=10):
+    logger.info(f'Fetching passes for satellite {satellite.norad_id} at location {location.name}')
     api_key = os.getenv('N2YO_API_KEY')
     url = (
         f'https://api.n2yo.com/rest/v1/satellite/visualpasses/'
@@ -17,6 +22,7 @@ def fetch_predicted_passes(satellite, location, days=5, min_elevation=10):
     )
     response = requests.get(url)
     response.raise_for_status()
+    logger.info(f'Successfully fetched {len(response.json().get("passes", []))} passes')
     return response.json()
 
 
@@ -34,4 +40,5 @@ def save_predicted_passes(satellite, location, days=5, min_elevation=10):
             max_elevation_deg=p['maxEl'],
         )
         created.append(pass_event)
+    logger.info(f'Saved {len(created)} predicted passes for {satellite.name}')
     return created
