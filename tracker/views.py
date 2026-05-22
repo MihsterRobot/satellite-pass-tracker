@@ -1,6 +1,7 @@
 '''Provides CRUD operations for models.'''
 
 import logging
+from requests.exceptions import RequestException
 
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -53,6 +54,10 @@ class PassViewSet(viewsets.ModelViewSet):
             logger.warning(f'Satellite {satellite_id} or location {location_id} not found')
             return Response({'error': 'Satellite or location not found.'}, status=404)
 
-        passes = save_predicted_passes(satellite, location)
+        try:
+            passes = save_predicted_passes(satellite, location)
+        except RequestException:
+            return Response({'error': 'Failed to fetch pass predictions. Please try again later.'}, status=503)
+
         serializer = self.get_serializer(passes, many=True)
         return Response(serializer.data, status=201)

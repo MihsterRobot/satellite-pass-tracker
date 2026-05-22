@@ -20,8 +20,15 @@ def fetch_predicted_passes(satellite, location, days=5, min_elevation=10):
         f'{location.altitude_m}/{days}/{min_elevation}'
         f'&apiKey={api_key}'
     )
-    response = requests.get(url)
-    response.raise_for_status()
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+    except requests.exceptions.Timeout:
+        logger.error(f'N2YO API request timed out for satellite {satellite.norad_id}')
+        raise
+    except requests.exceptions.RequestException as e:
+        logger.error(f'N2YO API request failed: {e}')
+        raise
     logger.info(f'Successfully fetched {len(response.json().get("passes", []))} passes')
     return response.json()
 
