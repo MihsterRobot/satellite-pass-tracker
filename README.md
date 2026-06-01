@@ -94,7 +94,7 @@ cd satellite-tracker
 
 ```
 SECRET_KEY=your_secret_key
-DB_NAME=satellite_tracker
+DB_NAME=satellite_pass_tracker
 DB_USER=postgres
 DB_PASSWORD=your_postgres_password
 DB_HOST=localhost

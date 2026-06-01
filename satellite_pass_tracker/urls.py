@@ -1,4 +1,4 @@
-'''URL configuration for satellite_tracker project.
+'''URL configuration for satellite_pass_tracker project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/

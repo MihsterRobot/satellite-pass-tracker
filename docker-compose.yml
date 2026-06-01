@@ -2,7 +2,7 @@ services:
   db:
     image: postgres:17
     environment:
-      POSTGRES_DB: satellite_tracker
+      POSTGRES_DB: satellite_pass_tracker
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${DB_PASSWORD}
 

@@ -14,7 +14,7 @@ jobs:
       db:
         image: postgres:17
         env:
-          POSTGRES_DB: satellite_tracker
+          POSTGRES_DB: satellite_pass_tracker
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports:
@@ -27,7 +27,7 @@ jobs:
 
     env:
       SECRET_KEY: test-secret-key
-      DB_NAME: satellite_tracker
+      DB_NAME: satellite_pass_tracker
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_HOST: localhost

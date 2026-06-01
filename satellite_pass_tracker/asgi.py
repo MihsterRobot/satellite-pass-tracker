@@ -1,4 +1,4 @@
-'''ASGI config for satellite_tracker project.
+'''ASGI config for satellite_pass_tracker project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 from django.core.asgi import get_asgi_application
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'satellite_tracker.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'satellite_pass_tracker.settings')
 
 application = get_asgi_application()

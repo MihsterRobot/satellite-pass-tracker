@@ -1,4 +1,4 @@
-'''Django development settings for satellite_tracker project.'''
+'''Django development settings for satellite_pass_tracker project.'''
 
 from .base import *
 

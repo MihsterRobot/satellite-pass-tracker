@@ -1,4 +1,4 @@
-'''WSGI config for satellite_tracker project.
+'''WSGI config for satellite_pass_tracker project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -10,6 +10,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'satellite_tracker.settings.development')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'satellite_pass_tracker.settings.development')
 
 application = get_wsgi_application()
